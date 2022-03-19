@@ -1,0 +1,417 @@
+%% LyX 2.3.6.1 created this file.  For more info, see http://www.lyx.org/.
+%% Do not edit unless you really know what you are doing.
+\documentclass[12pt,american]{article}
+\usepackage[T1]{fontenc}
+\usepackage{geometry}
+\geometry{verbose,tmargin=2cm,bmargin=2cm,lmargin=1cm,rmargin=1cm,headheight=1cm,headsep=1cm}
+\setlength{\parindent}{0bp}
+\usepackage{color}
+\usepackage{calc}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\PassOptionsToPackage{normalem}{ulem}
+\usepackage{ulem}
+
+\makeatletter
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% User specified LaTeX commands.
+\date{}
+
+\usepackage{listings}
+\usepackage{xcolor}
+\usepackage{marvosym}
+
+
+\definecolor{codegreen}{rgb}{0,0.6,0}
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\definecolor{codepurple}{rgb}{0.58,0,0.82}
+\definecolor{backcolour}{rgb}{0.95,0.95,0.92}
+
+\lstdefinestyle{mystyle}{
+    backgroundcolor=\color{backcolour},   
+    commentstyle=\color{codegreen},
+    keywordstyle=\color{cyan},
+    numberstyle=\tiny\color{codegray},
+    stringstyle=\color{codepurple},
+    basicstyle=\ttfamily\footnotesize,
+    breakatwhitespace=false,         
+    breaklines=true,                 
+    captionpos=b,                    
+    keepspaces=true,                 
+    numbers=left,                    
+    numbersep=5pt,                  
+    showspaces=false,                
+    showstringspaces=false,
+    showtabs=false,                  
+    tabsize=2
+}
+
+\lstset{style=mystyle}
+
+\makeatother
+
+\usepackage{babel}
+\begin{document}
+\title{Unsupervised Learning Methods 2022\\
+Problem Set I -- \\
+Optimization\\
+}
+
+\maketitle
+\vspace{-25mm}
+\begin{center}
+Due: 28.03.2022
+\par\end{center}
+
+\subsubsection*{Guidelines}
+\begin{itemize}
+\item Answer all questions (PDF + Jupyter notebook).
+\item You must type your solution manual (handwriting is not allowed).
+\item Submission in pairs (use the forum if needed).
+\item You \textbf{may} submit the entire solution in a single ipynb file
+(or PDF + ipynb files).
+\item You \textbf{may }(and should) use the forums if you have any questions.
+\item Good luck!
+\end{itemize}
+%
+
+\section{Convexity}
+
+\subsubsection*{Convex set}
+
+Let:
+\[
+\mathbb{R}_{\geq0}^{d}=\left\{ \boldsymbol{x}\in\mathbb{R}^{d}\,\bigg|\,\min_{i}x_{i}\geq0\right\} 
+\]
+where $\boldsymbol{x}=\left[\begin{matrix}x_{1}\\
+x_{2}\\
+\vdots\\
+x_{d}
+\end{matrix}\right]$.
+
+\subsection{~}
+
+Prove or disprove: $\mathbb{R}_{\geq0}^{d}$ is convex.
+
+\noindent\fbox{\begin{minipage}[t]{1\columnwidth - 2\fboxsep - 2\fboxrule}%
+\textbf{Solution:}
+
+Type your solution here...\\
+%
+\end{minipage}}
+
+\[
+----------------------------------------------
+\]
+
+\newpage{}
+
+\subsubsection*{Convex combination}
+
+Let $\mathcal{C}\subseteq\mathbb{R}^{d}$ be a convex set and consider
+$\left\{ \boldsymbol{x}_{i}\in\mathcal{C}\right\} _{i=1}^{N}$ .
+
+\subsection{~}
+
+Prove that for any $N\in\mathbb{N}$: 
+
+\[
+\sum_{i=1}^{N}\alpha_{i}\boldsymbol{x}_{i}\in\mathcal{C}
+\]
+where $\alpha_{i}$ are such that: 
+\begin{itemize}
+\item $\alpha_{i}\geq0$ for all $i$.
+\item $\sum_{i=1}^{N}\alpha_{i}=1$.
+\end{itemize}
+%
+\noindent\fbox{\begin{minipage}[t]{1\columnwidth - 2\fboxsep - 2\fboxrule}%
+\textbf{Solution:}
+
+Type your solution here...\\
+%
+\end{minipage}}
+
+\[
+----------------------------------------------
+\]
+
+Let $\mathcal{C}\subset\mathbb{R}^{2}$ be convex, and consider $\left\{ \boldsymbol{x}_{i}\in\mathcal{C}\right\} _{i=1}^{10}$
+such that $\boldsymbol{x}_{i}\neq\boldsymbol{x}_{j}$ for all $i\neq j$.
+
+\subsection{~}
+
+Prove or disprove: Necessarily, any point $\boldsymbol{y}\in\mathcal{C}$
+can be represented as a convex combination of $\left\{ \boldsymbol{x}_{i}\right\} _{i=1}^{10}$.
+
+\noindent\fbox{\begin{minipage}[t]{1\columnwidth - 2\fboxsep - 2\fboxrule}%
+\textbf{Solution:}
+
+Type your solution here...\\
+%
+\end{minipage}}
+
+\[
+----------------------------------------------
+\]
+
+\newpage{}
+
+\section{The Gradient}
+
+\textbf{Note: }Assume all functions are differentiable.
+
+\subsubsection*{Directional derivative}
+
+Let $f:\mathbb{R}^{d}\to\mathbb{R}$ and let $\boldsymbol{x}_{0}\in\mathbb{R}^{d}$. 
+
+\subsection{~}
+
+Prove\textbf{ }that:
+\[
+\forall\boldsymbol{h}\in\mathbb{R}^{d}:\nabla f\left(\boldsymbol{x}_{0}\right)\left[\boldsymbol{h}\right]=\left\langle \boldsymbol{g}_{0},\boldsymbol{h}\right\rangle \implies\boldsymbol{g}_{0}=\nabla f\left(\boldsymbol{x}_{0}\right)
+\]
+
+\noindent\fbox{\begin{minipage}[t]{1\columnwidth - 2\fboxsep - 2\fboxrule}%
+\textbf{Solution:}
+
+Type your solution here...\\
+%
+\end{minipage}}
+
+\[
+----------------------------------------------
+\]
+
+\noindent\fbox{\begin{minipage}[t]{1\columnwidth - 2\fboxsep - 2\fboxrule}%
+\textbf{Definition}
+
+$f:\mathbb{R}^{d_{1}}\to\mathbb{R}^{d_{2}}$ is said to be \uline{linear}
+if:
+\[
+f\left(\alpha\boldsymbol{x}+\beta\boldsymbol{y}\right)=\alpha f\left(\boldsymbol{x}\right)+\beta f\left(\boldsymbol{y}\right)
+\]
+for all $\alpha,\beta\in\mathbb{R}$ and for all $\boldsymbol{x},\boldsymbol{y}\in\mathbb{R}^{d_{1}}$.%
+\end{minipage}}
+
+Let $f:\mathbb{R}^{d_{1}}\to\mathbb{R}^{d_{2}}$ be a linear function.
+
+\subsection{~}
+
+Prove that:
+\[
+\nabla f\left(\boldsymbol{x}\right)\left[\boldsymbol{h}\right]=f\left(\boldsymbol{h}\right)
+\]
+for all $\boldsymbol{x},\boldsymbol{h}\in\mathbb{R}^{d_{1}}$.
+
+\noindent\fbox{\begin{minipage}[t]{1\columnwidth - 2\fboxsep - 2\fboxrule}%
+\textbf{Solution:}
+
+Type your solution here...\\
+%
+\end{minipage}}
+
+\[
+----------------------------------------------
+\]
+
+
+\subsection{Some useful exercises}
+
+Compute the directional derivative $\nabla f\left(\boldsymbol{x}\right)\left[\boldsymbol{h}\right]$
+and the gradient $\nabla f\left(\boldsymbol{x}\right)$ of:
+\begin{enumerate}
+\item ~
+\[
+f\left(\boldsymbol{x}\right)=\boldsymbol{x}^{T}\boldsymbol{A}\boldsymbol{x}
+\]
+\fbox{\begin{minipage}[t]{0.85\columnwidth}%
+\textbf{Solution:}
+
+Type your solution here...\\
+%
+\end{minipage}}
+\item ~
+\[
+f\left(\boldsymbol{X}\right)=\text{Tr}\left\{ \boldsymbol{X}^{T}\boldsymbol{A}\boldsymbol{X}\right\} 
+\]
+where $\boldsymbol{X}\in\mathbb{R}^{N\times d}$ and $\text{Tr}\left\{ \cdot\right\} $
+is the trace operator.\\
+\fbox{\begin{minipage}[t]{0.85\columnwidth}%
+\textbf{Solution:}
+
+Type your solution here...\\
+%
+\end{minipage}}
+\item ~
+\[
+f\left(\boldsymbol{x}\right)=\left\Vert \boldsymbol{y}-\boldsymbol{A}\boldsymbol{x}\right\Vert _{2}^{2}
+\]
+\fbox{\begin{minipage}[t]{0.85\columnwidth}%
+\textbf{Solution:}
+
+Type your solution here...\\
+%
+\end{minipage}}
+\item ~
+\[
+f\left(\boldsymbol{X}\right)=\left\Vert \boldsymbol{Y}-\boldsymbol{A}\boldsymbol{X}\right\Vert _{F}^{2}
+\]
+where: \begin{enumerate}
+\item $\boldsymbol{Y}\in\mathbb{R}^{D\times N}$, $\boldsymbol{A}\in\mathbb{R}^{D\times d}$
+and $\boldsymbol{X}\in\mathbb{R}^{d\times N}$.
+\item $\left\Vert \cdot\right\Vert _{F}^{2}$ is the Frobenius norm, that
+is, $\left\Vert \boldsymbol{X}\right\Vert _{F}^{2}=\left\langle \boldsymbol{X},\boldsymbol{X}\right\rangle =\text{Tr}\left\{ \boldsymbol{X}^{T}\boldsymbol{X}\right\} $.
+\end{enumerate}%
+\fbox{\begin{minipage}[t]{0.85\columnwidth}%
+\textbf{Solution:}
+
+Type your solution here...\\
+%
+\end{minipage}}
+\item ~
+\[
+f\left(\boldsymbol{X}\right)=\left\langle \boldsymbol{X}^{T}\boldsymbol{A},\boldsymbol{Y}^{T}\right\rangle 
+\]
+where $\boldsymbol{Y}\in\mathbb{R}^{D\times N}$, $\boldsymbol{A}\in\mathbb{R}^{d\times D}$
+and $\boldsymbol{X}\in\mathbb{R}^{d\times N}$.\\
+\fbox{\begin{minipage}[t]{0.85\columnwidth}%
+\textbf{Solution:}
+
+Type your solution here...\\
+%
+\end{minipage}}
+\item ~
+\[
+f\left(\boldsymbol{x}\right)=\boldsymbol{a}^{T}g\left(\boldsymbol{x}\right)
+\]
+where: \begin{enumerate}
+\item $g\left(\boldsymbol{x}\right):=\left[\begin{matrix}g\left(x_{1}\right)\\
+\vdots\\
+g\left(x_{d}\right)
+\end{matrix}\right]\in\mathbb{R}^{d}$
+\end{enumerate}%
+\fbox{\begin{minipage}[t]{0.85\columnwidth}%
+\textbf{Solution:}
+
+Type your solution here...\\
+%
+\end{minipage}}\newpage{}
+\item ~
+\[
+f\left(\boldsymbol{X}\right)=\left\langle \boldsymbol{A},\log\left[\boldsymbol{X}\right]\right\rangle 
+\]
+where: \begin{enumerate}
+\item $\boldsymbol{X}\in\mathbb{R}^{d\times d}$
+\item $\log\left[\boldsymbol{X}\right]$ is an element-wise log, that is:
+\[
+\boldsymbol{M}=\log\left[\boldsymbol{X}\right]\implies\boldsymbol{M}\left[i,j\right]=\log\left(\boldsymbol{X}\left[i,j\right]\right)
+\]
+\end{enumerate}
+\fbox{\begin{minipage}[t]{0.85\columnwidth}%
+\textbf{Solution:}
+
+Type your solution here...\\
+%
+\end{minipage}}
+\item ~
+\[
+f\left(\boldsymbol{X}\right)=\left\langle \boldsymbol{a},\text{diag}\left(\boldsymbol{X}\right)\right\rangle 
+\]
+where: \begin{enumerate}
+\item $\boldsymbol{X}\in\mathbb{R}^{d\times d}$ 
+\item $\text{diag}:\mathbb{R}^{d\times d}\to\mathbb{R}^{d}$ returns the
+diagonal of a matrix, that is:
+\[
+\boldsymbol{b}=\text{diag}\left(\boldsymbol{X}\right)\implies\boldsymbol{b}\left[i\right]=\boldsymbol{X}\left[i,i\right]
+\]
+\end{enumerate}%
+\fbox{\begin{minipage}[t]{0.85\columnwidth}%
+\textbf{Solution:}
+
+Type your solution here...\\
+%
+\end{minipage}}
+\end{enumerate}
+%
+\[
+----------------------------------------------
+\]
+
+
+\section{Descent Methods (Gradient Descent and Momentum)}
+\begin{center}
+\textcolor{red}{\Huge{}\Keyboard\  }Solve this section in the attached
+notebook. \textcolor{red}{\Huge{}\Keyboard }{\Huge\par}
+\par\end{center}
+
+\[
+----------------------------------------------
+\]
+
+\newpage{}
+
+\section{Constraint optimization}
+
+\subsubsection*{Minimax}
+
+Let $G\left(x,y\right)=\sin\left(x+y\right)$.
+
+\subsection{~}
+
+Show that:
+\begin{enumerate}
+\item $\underset{x}{\min}\underset{y}{\max}G\left(x,y\right)=1$ 
+\item $\underset{y}{\max}\underset{x}{\min}G\left(x,y\right)=-1$
+\end{enumerate}
+%
+\noindent\fbox{\begin{minipage}[t]{1\columnwidth - 2\fboxsep - 2\fboxrule}%
+\textbf{Solution:}
+
+Type your solution here...\\
+%
+\end{minipage}}
+
+\[
+----------------------------------------------
+\]
+
+
+\subsubsection*{Rayleigh quotient}
+\begin{itemize}
+\item The \uline{Rayleigh quotient} is defined by:
+\[
+f\left(\boldsymbol{x}\right)=\frac{\boldsymbol{x}^{T}\boldsymbol{A}\boldsymbol{x}}{\boldsymbol{x}^{T}\boldsymbol{x}}
+\]
+for some symmetric matrix $\boldsymbol{A}\in\mathbb{R}^{d\times d}$.
+\end{itemize}
+%
+
+\subsection{~}
+\begin{enumerate}
+\item Show that
+\[
+\min_{\boldsymbol{x}}f\left(\boldsymbol{x}\right)=\begin{cases}
+\min_{\boldsymbol{x}}\boldsymbol{x}^{T}\boldsymbol{A}\boldsymbol{x}\\
+\text{s.t. }\left\Vert \boldsymbol{x}\right\Vert _{2}^{2}=1
+\end{cases}
+\]
+\item Write the Lagrangian of the constraint objective $\mathcal{L}\left(\boldsymbol{x},\lambda\right)$.
+\item Show that:
+\[
+\nabla_{\boldsymbol{x}}\mathcal{L}\left(\boldsymbol{x},\lambda\right)=0\iff\boldsymbol{A}\boldsymbol{x}=\lambda\boldsymbol{x}
+\]
+in other words, the stationary points $\left(\boldsymbol{x},\lambda\right)$
+are the eigenpairs of $\boldsymbol{A}$ (eigenvectors and eigenvalues).
+\end{enumerate}
+%
+\noindent\fbox{\begin{minipage}[t]{1\columnwidth - 2\fboxsep - 2\fboxrule}%
+\textbf{Solution:}
+
+Type your solution here...\\
+%
+\end{minipage}}
+
+\[
+----------------------------------------------
+\]
+
+\end{document}
