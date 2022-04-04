@@ -1,0 +1,299 @@
+%% LyX 2.3.6.1 created this file.  For more info, see http://www.lyx.org/.
+%% Do not edit unless you really know what you are doing.
+\documentclass[12pt,american]{article}
+\usepackage[T1]{fontenc}
+\usepackage{geometry}
+\geometry{verbose,tmargin=2cm,bmargin=2cm,lmargin=1cm,rmargin=1cm,headheight=1cm,headsep=1cm}
+\setlength{\parindent}{0bp}
+\usepackage{color}
+\usepackage{calc}
+\usepackage{amsmath}
+\usepackage{amssymb}
+
+\makeatletter
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% User specified LaTeX commands.
+\date{}
+
+\usepackage{listings}
+\usepackage{xcolor}
+\usepackage{marvosym}
+
+
+\definecolor{codegreen}{rgb}{0,0.6,0}
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\definecolor{codepurple}{rgb}{0.58,0,0.82}
+\definecolor{backcolour}{rgb}{0.95,0.95,0.92}
+
+\lstdefinestyle{mystyle}{
+    backgroundcolor=\color{backcolour},   
+    commentstyle=\color{codegreen},
+    keywordstyle=\color{cyan},
+    numberstyle=\tiny\color{codegray},
+    stringstyle=\color{codepurple},
+    basicstyle=\ttfamily\footnotesize,
+    breakatwhitespace=false,         
+    breaklines=true,                 
+    captionpos=b,                    
+    keepspaces=true,                 
+    numbers=left,                    
+    numbersep=5pt,                  
+    showspaces=false,                
+    showstringspaces=false,
+    showtabs=false,                  
+    tabsize=2
+}
+
+\lstset{style=mystyle}
+
+\makeatother
+
+\usepackage{babel}
+\begin{document}
+\title{Unsupervised Learning Methods 2022\\
+Problem Set II -- \\
+Clustering\\
+}
+\maketitle
+\begin{center}
+Due: 11.04.2022
+\par\end{center}
+
+\subsubsection*{Guidelines}
+\begin{itemize}
+\item Answer all questions (PDF + Jupyter notebook).
+\item You must type your solution manual (handwriting is not allowed).
+\item Submission in pairs (use the forum if needed).
+\item You \textbf{may} submit the entire solution in a single ipynb file
+(or PDF + ipynb files).
+\item You \textbf{may }(and should) use the forums if you have any questions.
+\item Good luck!
+\end{itemize}
+%
+\newpage{}
+
+\section{K-Means}
+
+\textbf{Objective}
+
+The K-Means objective is given by:
+
+\[
+\arg\min_{\left\{ \mathcal{D}_{k}\right\} ,\left\{ \boldsymbol{\mu}_{k}\right\} }\sum_{k=1}^{K}\sum_{\boldsymbol{x}_{i}\in\mathcal{D}_{k}}\left\Vert \boldsymbol{x}_{i}-\boldsymbol{\mu}_{k}\right\Vert _{2}^{2}
+\]
+
+
+\subsection{~}
+
+Show that the following two objectives are equivalent to the K-Means
+objective:
+\begin{enumerate}
+\item As a sole function of the clusters:
+\[
+\arg\min_{\left\{ \mathcal{D}_{k}\right\} }\sum_{k=1}^{K}\frac{1}{\left|\mathcal{D}_{k}\right|}\sum_{\boldsymbol{x}_{i},\boldsymbol{x}_{j}\in\mathcal{D}_{k}}\left\Vert \boldsymbol{x}_{i}-\boldsymbol{x}_{j}\right\Vert _{2}^{2}
+\]
+\item As a sole function of the centroids:
+\[
+\arg\min_{\left\{ \boldsymbol{\mu}_{k}\right\} }\sum_{i=1}^{N}\min_{k}\left\Vert \boldsymbol{x}_{i}-\boldsymbol{\mu}_{k}\right\Vert _{2}^{2}
+\]
+\end{enumerate}
+\noindent\fbox{\begin{minipage}[t]{1\columnwidth - 2\fboxsep - 2\fboxrule}%
+\textbf{Solution:}
+
+1. Type your solution here...\\
+2. Type your solution here...%
+\end{minipage}}
+
+\[
+----------------------------------------------
+\]
+
+
+\subsection{~}
+
+Prove or disprove:
+
+The K-Means algorithm \textbf{always} converges to a global minimum.
+
+\noindent\fbox{\begin{minipage}[t]{1\columnwidth - 2\fboxsep - 2\fboxrule}%
+\textbf{Solution:}
+
+Type your solution here...\\
+%
+\end{minipage}}
+
+\[
+----------------------------------------------
+\]
+
+
+\subsection{K-Means implementation and Super-pixels}
+\begin{center}
+\textcolor{red}{\Huge{}\Keyboard\  }Solve this section in the attached
+notebook. \textcolor{red}{\Huge{}\Keyboard }{\Huge\par}
+\par\end{center}
+
+\[
+----------------------------------------------
+\]
+
+\newpage{}
+
+\section{GMM}
+
+\paragraph{Gaussian random vector}
+\begin{itemize}
+\item Let $\underline{X}\sim\mathcal{N}_{d}\left(\boldsymbol{\mu}_{x},\boldsymbol{\Sigma}_{x}\right)$
+be a Gaussian random vector.
+\item Let $Y=\boldsymbol{a}^{T}\underline{X}+b$ be a random variable
+\end{itemize}
+%
+
+\subsection{~}
+
+Find $f_{Y}\left(y\right)$, the pdf of $Y$ (as a function of $\boldsymbol{\mu}_{x},\boldsymbol{\Sigma}_{x},\boldsymbol{a},b$).
+
+\noindent\fbox{\begin{minipage}[t]{1\columnwidth - 2\fboxsep - 2\fboxrule}%
+\textbf{Solution:}
+
+Type your solution here...\\
+%
+\end{minipage}}
+
+\[
+----------------------------------------------
+\]
+
+\textbf{Covariance}
+
+\noindent\fbox{\begin{minipage}[t]{1\columnwidth - 2\fboxsep - 2\fboxrule}%
+A matrix $\boldsymbol{A}\in\mathbb{R}^{d\times d}$ is called Symmetric
+Positive Semi-Definite (SPSD) if $\boldsymbol{A}^{T}=\boldsymbol{A}$
+and for any $\boldsymbol{v}\in\mathbb{R}^{d}$:
+\[
+\boldsymbol{v}^{T}\boldsymbol{A}\boldsymbol{v}\geq0
+\]
+
+In other words:
+
+\[
+\boldsymbol{A}\succeq0\iff\begin{cases}
+\boldsymbol{A}^{T}=\boldsymbol{A}\\
+\boldsymbol{v}^{T}\boldsymbol{A}\boldsymbol{v}\geq0 & \forall\boldsymbol{v}
+\end{cases}
+\]
+%
+\end{minipage}}
+
+Let $\underline{X}$ be a random vector with covariance $\boldsymbol{\Sigma}_{x}$.
+
+\subsection{~}
+
+Prove that $\boldsymbol{\Sigma}_{x}$ is an SPSD matrix.
+
+\noindent\fbox{\begin{minipage}[t]{1\columnwidth - 2\fboxsep - 2\fboxrule}%
+\textbf{Solution:}
+
+Type your solution here...\\
+%
+\end{minipage}}
+
+\[
+----------------------------------------------
+\]
+
+
+\subsection{GMM implementation}
+\begin{center}
+\textcolor{red}{\Huge{}\Keyboard\  }Solve this section in the attached
+notebook. \textcolor{red}{\Huge{}\Keyboard }{\Huge\par}
+\par\end{center}
+
+\[
+----------------------------------------------
+\]
+
+\newpage{}
+
+\section{Hierarchical Clustering}
+
+\subsubsection*{Complete-linkage}
+
+The complete-linkage distance between the two clusters $\mathcal{C}_{1}=\left\{ \boldsymbol{x}_{i}\right\} _{i=1}^{N_{1}}$
+and $\mathcal{C}_{2}=\left\{ \boldsymbol{x}_{j}\right\} _{j=1}^{N_{2}}$:
+
+\[
+d_{\mathrm{complete-link}}^{2}\left(\mathcal{C}_{1},\mathcal{C}_{2}\right)=\begin{cases}
+0 & \mathcal{C}_{1}=\mathcal{C}_{2}\\
+\max_{\boldsymbol{x}_{i}\in\mathcal{C}_{1},\boldsymbol{x}_{j}\in\mathcal{C}_{2}}\left\Vert \boldsymbol{x}_{i}-\boldsymbol{x}_{j}\right\Vert _{2}^{2} & \text{else}
+\end{cases}
+\]
+
+
+\subsection{~}
+
+Prove that the complete-linkage is indeed a metric.
+
+\noindent\fbox{\begin{minipage}[t]{1\columnwidth - 2\fboxsep - 2\fboxrule}%
+\textbf{Solution:}
+
+Type your solution here...\\
+%
+\end{minipage}}
+
+\[
+----------------------------------------------
+\]
+
+
+\subsubsection*{Lance-Williams}
+
+The Lance-Williams update rule (see the full algorithm in the lecture
+notes):
+
+\[
+D_{\widetilde{ij},k}\leftarrow\alpha_{i}D_{i,k}+\alpha_{j}D_{j,k}+\beta D_{i,j}+\gamma\left|D_{i,k}-D_{j,k}\right|
+\]
+
+Consider the three clusters $\mathcal{C}_{1},\mathcal{C}_{2}$ and
+$\mathcal{C}_{3}$ with 
+\[
+D_{i,j}=d_{\mathrm{single-link}}\left(\mathcal{C}_{i},\mathcal{C}_{j}\right)
+\]
+
+
+\subsection{(Bouns 4\%)}
+
+Prove that
+
+\[
+D_{\widetilde{12},3}=d_{\mathrm{single-link}}\left(\mathcal{C}_{1}\cup\mathcal{C}_{2},\mathcal{C}_{3}\right)
+\]
+In words, show that the Lance-Williams algorithm is correct for the
+single-linkage dissimilarity.
+
+\noindent\fbox{\begin{minipage}[t]{1\columnwidth - 2\fboxsep - 2\fboxrule}%
+\textbf{Solution:}
+
+Type your solution here...\\
+%
+\end{minipage}}
+
+\[
+----------------------------------------------
+\]
+
+\newpage{}
+
+\section{DBSCAN}
+
+\subsection{DBSCAN implementation}
+\begin{center}
+\textcolor{red}{\Huge{}\Keyboard\  }Solve this section in the attached
+notebook. \textcolor{red}{\Huge{}\Keyboard }{\Huge\par}
+\par\end{center}
+
+\[
+----------------------------------------------
+\]
+
+\end{document}

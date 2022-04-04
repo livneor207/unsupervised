@@ -1,0 +1,1027 @@
+#LyX 2.3 created this file. For more info see http://www.lyx.org/
+\lyxformat 544
+\begin_document
+\begin_header
+\save_transient_properties true
+\origin unavailable
+\textclass article
+\begin_preamble
+\date{}
+
+\usepackage{listings}
+\usepackage{xcolor}
+\usepackage{marvosym}
+
+
+\definecolor{codegreen}{rgb}{0,0.6,0}
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\definecolor{codepurple}{rgb}{0.58,0,0.82}
+\definecolor{backcolour}{rgb}{0.95,0.95,0.92}
+
+\lstdefinestyle{mystyle}{
+    backgroundcolor=\color{backcolour},   
+    commentstyle=\color{codegreen},
+    keywordstyle=\color{cyan},
+    numberstyle=\tiny\color{codegray},
+    stringstyle=\color{codepurple},
+    basicstyle=\ttfamily\footnotesize,
+    breakatwhitespace=false,         
+    breaklines=true,                 
+    captionpos=b,                    
+    keepspaces=true,                 
+    numbers=left,                    
+    numbersep=5pt,                  
+    showspaces=false,                
+    showstringspaces=false,
+    showtabs=false,                  
+    tabsize=2
+}
+
+\lstset{style=mystyle}
+\end_preamble
+\use_default_options true
+\maintain_unincluded_children false
+\language american
+\language_package default
+\inputencoding default
+\fontencoding global
+\font_roman "default" "default"
+\font_sans "default" "default"
+\font_typewriter "default" "default"
+\font_math "auto" "auto"
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100 100
+\font_tt_scale 100 100
+\use_microtype false
+\use_dash_ligatures true
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command default
+\index_command default
+\paperfontsize 12
+\spacing single
+\use_hyperref false
+\papersize default
+\use_geometry true
+\use_package amsmath 1
+\use_package amssymb 1
+\use_package cancel 1
+\use_package esint 1
+\use_package mathdots 1
+\use_package mathtools 1
+\use_package mhchem 1
+\use_package stackrel 1
+\use_package stmaryrd 1
+\use_package undertilde 1
+\cite_engine basic
+\cite_engine_type default
+\biblio_style plain
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\justification true
+\use_refstyle 1
+\use_minted 0
+\index Index
+\shortcut idx
+\color #6cc72c
+\end_index
+\leftmargin 1cm
+\topmargin 2cm
+\rightmargin 1cm
+\bottommargin 2cm
+\headheight 1cm
+\headsep 1cm
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation indent
+\paragraph_indentation 0bp
+\is_math_indent 0
+\math_numbering_side default
+\quotes_style english
+\dynamic_quotes 0
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Title
+Unsupervised Learning Methods 2022
+\begin_inset Newline newline
+\end_inset
+
+Problem Set II – 
+\begin_inset Newline newline
+\end_inset
+
+Clustering
+\begin_inset Newline newline
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\align center
+Due: 11.04.2022
+\end_layout
+
+\begin_layout Subsubsection*
+Guidelines
+\end_layout
+
+\begin_layout Itemize
+Answer all questions (PDF + Jupyter notebook).
+\end_layout
+
+\begin_layout Itemize
+You must type your solution manual (handwriting is not allowed).
+\end_layout
+
+\begin_layout Itemize
+Submission in pairs (use the forum if needed).
+\end_layout
+
+\begin_layout Itemize
+You 
+\series bold
+may
+\series default
+ submit the entire solution in a single ipynb file (or PDF + ipynb files).
+\end_layout
+
+\begin_layout Itemize
+You 
+\series bold
+may 
+\series default
+(and should) use the forums if you have any questions.
+\end_layout
+
+\begin_layout Itemize
+Good luck!
+\end_layout
+
+\begin_layout Standard
+\begin_inset Separator plain
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Newpage newpage
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+K-Means
+\end_layout
+
+\begin_layout Standard
+
+\series bold
+Objective
+\end_layout
+
+\begin_layout Standard
+The K-Means objective is given by:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+\arg\min_{\left\{ \mathcal{D}_{k}\right\} ,\left\{ \boldsymbol{\mu}_{k}\right\} }\sum_{k=1}^{K}\sum_{\boldsymbol{x}_{i}\in\mathcal{D}_{k}}\left\Vert \boldsymbol{x}_{i}-\boldsymbol{\mu}_{k}\right\Vert _{2}^{2}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+\begin_inset space ~
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Show that the following two objectives are equivalent to the K-Means objective:
+\end_layout
+
+\begin_layout Enumerate
+As a sole function of the clusters:
+\begin_inset Formula 
+\[
+\arg\min_{\left\{ \mathcal{D}_{k}\right\} }\sum_{k=1}^{K}\frac{1}{\left|\mathcal{D}_{k}\right|}\sum_{\boldsymbol{x}_{i},\boldsymbol{x}_{j}\in\mathcal{D}_{k}}\left\Vert \boldsymbol{x}_{i}-\boldsymbol{x}_{j}\right\Vert _{2}^{2}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+As a sole function of the centroids:
+\begin_inset Formula 
+\[
+\arg\min_{\left\{ \boldsymbol{\mu}_{k}\right\} }\sum_{i=1}^{N}\min_{k}\left\Vert \boldsymbol{x}_{i}-\boldsymbol{\mu}_{k}\right\Vert _{2}^{2}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Box Boxed
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "100col%"
+special "none"
+height "1in"
+height_special "totalheight"
+thickness "0.4pt"
+separation "3pt"
+shadowsize "4pt"
+framecolor "black"
+backgroundcolor "none"
+status open
+
+\begin_layout Plain Layout
+
+\series bold
+Solution:
+\end_layout
+
+\begin_layout Plain Layout
+1.
+ Type your solution here...
+\begin_inset Newline newline
+\end_inset
+
+2.
+ Type your solution here...
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+----------------------------------------------
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Separator plain
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+\begin_inset space ~
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Prove or disprove:
+\end_layout
+
+\begin_layout Standard
+The K-Means algorithm 
+\series bold
+always
+\series default
+ converges to a global minimum.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Box Boxed
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "100col%"
+special "none"
+height "1in"
+height_special "totalheight"
+thickness "0.4pt"
+separation "3pt"
+shadowsize "4pt"
+framecolor "black"
+backgroundcolor "none"
+status open
+
+\begin_layout Plain Layout
+
+\series bold
+Solution:
+\end_layout
+
+\begin_layout Plain Layout
+Type your solution here...
+\begin_inset Newline newline
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+----------------------------------------------
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+K-Means implementation and Super-pixels
+\end_layout
+
+\begin_layout Standard
+\align center
+
+\size giant
+\color red
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+Keyboard
+\backslash
+ 
+\end_layout
+
+\end_inset
+
+ 
+\size default
+\color inherit
+Solve this section in the attached notebook.
+ 
+\size giant
+\color red
+
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+Keyboard 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+----------------------------------------------
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Newpage newpage
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+GMM
+\end_layout
+
+\begin_layout Paragraph
+Gaussian random vector
+\end_layout
+
+\begin_layout Itemize
+Let 
+\begin_inset Formula $\underline{X}\sim\mathcal{N}_{d}\left(\boldsymbol{\mu}_{x},\boldsymbol{\Sigma}_{x}\right)$
+\end_inset
+
+ be a Gaussian random vector.
+\end_layout
+
+\begin_layout Itemize
+Let 
+\begin_inset Formula $Y=\boldsymbol{a}^{T}\underline{X}+b$
+\end_inset
+
+ be a random variable
+\end_layout
+
+\begin_layout Standard
+\begin_inset Separator plain
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+\begin_inset space ~
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Find 
+\begin_inset Formula $f_{Y}\left(y\right)$
+\end_inset
+
+, the pdf of 
+\begin_inset Formula $Y$
+\end_inset
+
+ (as a function of 
+\begin_inset Formula $\boldsymbol{\mu}_{x},\boldsymbol{\Sigma}_{x},\boldsymbol{a},b$
+\end_inset
+
+).
+\end_layout
+
+\begin_layout Standard
+\begin_inset Box Boxed
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "100col%"
+special "none"
+height "1in"
+height_special "totalheight"
+thickness "0.4pt"
+separation "3pt"
+shadowsize "4pt"
+framecolor "black"
+backgroundcolor "none"
+status open
+
+\begin_layout Plain Layout
+
+\series bold
+Solution:
+\end_layout
+
+\begin_layout Plain Layout
+Type your solution here...
+\begin_inset Newline newline
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+----------------------------------------------
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+
+\series bold
+Covariance
+\end_layout
+
+\begin_layout Standard
+\begin_inset Box Boxed
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "100col%"
+special "none"
+height "1in"
+height_special "totalheight"
+thickness "0.4pt"
+separation "3pt"
+shadowsize "4pt"
+framecolor "black"
+backgroundcolor "none"
+status open
+
+\begin_layout Plain Layout
+A matrix 
+\begin_inset Formula $\boldsymbol{A}\in\mathbb{R}^{d\times d}$
+\end_inset
+
+ is called Symmetric Positive Semi-Definite (SPSD) if 
+\begin_inset Formula $\boldsymbol{A}^{T}=\boldsymbol{A}$
+\end_inset
+
+ and for any 
+\begin_inset Formula $\boldsymbol{v}\in\mathbb{R}^{d}$
+\end_inset
+
+:
+\begin_inset Formula 
+\[
+\boldsymbol{v}^{T}\boldsymbol{A}\boldsymbol{v}\geq0
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+In other words:
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Formula 
+\[
+\boldsymbol{A}\succeq0\iff\begin{cases}
+\boldsymbol{A}^{T}=\boldsymbol{A}\\
+\boldsymbol{v}^{T}\boldsymbol{A}\boldsymbol{v}\geq0 & \forall\boldsymbol{v}
+\end{cases}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Let 
+\begin_inset Formula $\underline{X}$
+\end_inset
+
+ be a random vector with covariance 
+\begin_inset Formula $\boldsymbol{\Sigma}_{x}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Subsection
+\begin_inset space ~
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Prove that 
+\begin_inset Formula $\boldsymbol{\Sigma}_{x}$
+\end_inset
+
+ is an SPSD matrix.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Box Boxed
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "100col%"
+special "none"
+height "1in"
+height_special "totalheight"
+thickness "0.4pt"
+separation "3pt"
+shadowsize "4pt"
+framecolor "black"
+backgroundcolor "none"
+status open
+
+\begin_layout Plain Layout
+
+\series bold
+Solution:
+\end_layout
+
+\begin_layout Plain Layout
+Type your solution here...
+\begin_inset Newline newline
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+----------------------------------------------
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+GMM implementation
+\end_layout
+
+\begin_layout Standard
+\align center
+
+\size giant
+\color red
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+Keyboard
+\backslash
+ 
+\end_layout
+
+\end_inset
+
+ 
+\size default
+\color inherit
+Solve this section in the attached notebook.
+ 
+\size giant
+\color red
+
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+Keyboard 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+----------------------------------------------
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Newpage newpage
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+Hierarchical Clustering
+\end_layout
+
+\begin_layout Subsubsection*
+Complete-linkage
+\end_layout
+
+\begin_layout Standard
+The complete-linkage distance between the two clusters 
+\begin_inset Formula $\mathcal{C}_{1}=\left\{ \boldsymbol{x}_{i}\right\} _{i=1}^{N_{1}}$
+\end_inset
+
+ and 
+\begin_inset Formula $\mathcal{C}_{2}=\left\{ \boldsymbol{x}_{j}\right\} _{j=1}^{N_{2}}$
+\end_inset
+
+:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+d_{\mathrm{complete-link}}^{2}\left(\mathcal{C}_{1},\mathcal{C}_{2}\right)=\begin{cases}
+0 & \mathcal{C}_{1}=\mathcal{C}_{2}\\
+\max_{\boldsymbol{x}_{i}\in\mathcal{C}_{1},\boldsymbol{x}_{j}\in\mathcal{C}_{2}}\left\Vert \boldsymbol{x}_{i}-\boldsymbol{x}_{j}\right\Vert _{2}^{2} & \text{else}
+\end{cases}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+\begin_inset space ~
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Prove that the complete-linkage is indeed a metric.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Box Boxed
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "100col%"
+special "none"
+height "1in"
+height_special "totalheight"
+thickness "0.4pt"
+separation "3pt"
+shadowsize "4pt"
+framecolor "black"
+backgroundcolor "none"
+status open
+
+\begin_layout Plain Layout
+
+\series bold
+Solution:
+\end_layout
+
+\begin_layout Plain Layout
+Type your solution here...
+\begin_inset Newline newline
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+----------------------------------------------
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection*
+Lance-Williams
+\end_layout
+
+\begin_layout Standard
+The Lance-Williams update rule (see the full algorithm in the lecture notes):
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+D_{\widetilde{ij},k}\leftarrow\alpha_{i}D_{i,k}+\alpha_{j}D_{j,k}+\beta D_{i,j}+\gamma\left|D_{i,k}-D_{j,k}\right|
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Consider the three clusters 
+\begin_inset Formula $\mathcal{C}_{1},\mathcal{C}_{2}$
+\end_inset
+
+ and 
+\begin_inset Formula $\mathcal{C}_{3}$
+\end_inset
+
+ with 
+\begin_inset Formula 
+\[
+D_{i,j}=d_{\mathrm{single-link}}\left(\mathcal{C}_{i},\mathcal{C}_{j}\right)
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+(Bouns 4%)
+\end_layout
+
+\begin_layout Standard
+Prove that
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+D_{\widetilde{12},3}=d_{\mathrm{single-link}}\left(\mathcal{C}_{1}\cup\mathcal{C}_{2},\mathcal{C}_{3}\right)
+\]
+
+\end_inset
+
+In words, show that the Lance-Williams algorithm is correct for the single-linka
+ge dissimilarity.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Box Boxed
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "100col%"
+special "none"
+height "1in"
+height_special "totalheight"
+thickness "0.4pt"
+separation "3pt"
+shadowsize "4pt"
+framecolor "black"
+backgroundcolor "none"
+status open
+
+\begin_layout Plain Layout
+
+\series bold
+Solution:
+\end_layout
+
+\begin_layout Plain Layout
+Type your solution here...
+\begin_inset Newline newline
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+----------------------------------------------
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Newpage newpage
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+DBSCAN
+\end_layout
+
+\begin_layout Subsection
+DBSCAN implementation
+\end_layout
+
+\begin_layout Standard
+\align center
+
+\size giant
+\color red
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+Keyboard
+\backslash
+ 
+\end_layout
+
+\end_inset
+
+ 
+\size default
+\color inherit
+Solve this section in the attached notebook.
+ 
+\size giant
+\color red
+
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+Keyboard 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+----------------------------------------------
+\]
+
+\end_inset
+
+
+\end_layout
+
+\end_body
+\end_document
